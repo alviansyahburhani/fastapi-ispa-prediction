@@ -12,7 +12,7 @@ API ini dibangun menggunakan **FastAPI** untuk memprediksi tingkat risiko infeks
 ## 🛠 Teknologi yang Digunakan
 
 * **Framework:** [FastAPI](https://fastapi.tiangolo.com/)
-* **Model:** XGBoost & Scikit-learn (Ensemble)
+* **Model:** Random Forest & XGBoost yang Di Ensemble
 * **Data Handling:** Pandas, Joblib
 * **Server:** Uvicorn
 
