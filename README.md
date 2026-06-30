@@ -1,45 +1,59 @@
-API Deteksi Risiko ISPA
-Ini adalah API berbasis FastAPI yang digunakan untuk mendeteksi risiko ISPA (Infeksi Saluran Pernapasan Akut) menggunakan model Ensemble Learning.
+# API Deteksi Risiko ISPA (Ensemble Learning)
 
-Fitur Utama
-Endpoint Prediksi: Menerima data klinis pasien dan mengembalikan prediksi risiko beserta probabilitasnya.
+API ini dibangun menggunakan **FastAPI** untuk memprediksi tingkat risiko infeksi saluran pernapasan akut (ISPA) menggunakan model **Ensemble Learning**. Proyek ini bertujuan untuk menyediakan inferensi yang cepat dan akurat berdasarkan data klinis pasien.
 
-Validasi Input: Menggunakan Pydantic dengan Literal untuk memastikan input data sesuai dengan format yang diharapkan model.
+## 🚀 Fitur
+* **Prediksi Berbasis AI:** Menggunakan model ensemble untuk mengklasifikasikan risiko pasien.
+* **Validasi Input Ketat:** Menggunakan `Pydantic` dengan `Literal` untuk memastikan data yang masuk sesuai standar medis.
+* **Integrasi Preprocessing:** Otomatis menangani encoding data kategorikal dan penskalaan fitur sebelum prediksi.
+* **Dokumentasi API:** Terintegrasi secara otomatis dengan Swagger UI untuk kemudahan pengujian.
 
-Preprocessing Otomatis: Menangani pemetaan label gender dan penyesuaian nama kolom secara otomatis sebelum prediksi.
+## 🛠 Teknologi yang Digunakan
+* **Framework:** [FastAPI](https://fastapi.tiangolo.com/)
+* **Model:** XGBoost & Scikit-learn (Ensemble)
+* **Data Handling:** Pandas, Joblib
+* **Server:** Uvicorn
 
-Persyaratan
-Python 3.10+
+## 📂 Struktur Proyek
+```text
+fastapi-ispa-prediction/
+├── models/
+│   ├── ensemble_model_ispa.pkl
+│   ├── le_jk.pkl
+│   ├── le_target.pkl
+│   └── preprocessor_ispa.pkl
+├── main.py
+├── requirements.txt
+├── .gitignore
+└── README.md
 
-Library utama: fastapi, uvicorn, pandas, scikit-learn, xgboost, joblib.
-
-Cara Menjalankan
-Clone repository ini:
+⚙️ Cara Menjalankan
+Clone repository:
 
 Bash
-git clone https://github.com/username/fastapi-ispa-prediction.git
+git clone [https://github.com/username/fastapi-ispa-prediction.git](https://github.com/username/fastapi-ispa-prediction.git)
 cd fastapi-ispa-prediction
-Buat Virtual Environment & Install Dependencies:
+Setup Environment:
 
 Bash
 python -m venv venv
-# Aktifkan venv (Windows)
+# Windows:
 .\venv\Scripts\activate
-# Install library
+Install Dependencies:
+
+Bash
 pip install -r requirements.txt
-Jalankan API:
+Jalankan Server:
 
 Bash
 python -m uvicorn main:app --reload
-Akses Dokumentasi:
-Buka browser dan akses http://127.0.0.1:8000/docs untuk melihat dokumentasi API (Swagger UI).
+Akses API:
+Buka http://127.0.0.1:8000/docs di browser Anda untuk melihat dokumentasi interaktif.
 
-Contoh Request
-Anda dapat menggunakan curl untuk melakukan prediksi:
+📋 Contoh Request (cURL)
 
-Bash
 curl -X 'POST' \
-  'http://127.0.0.1:8000/predict' \
+  '[http://127.0.0.1:8000/predict](http://127.0.0.1:8000/predict)' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -60,25 +74,18 @@ curl -X 'POST' \
   "HilangPenciuman": 0,
   "NyeriSaatMenelan": 1
 }'
-Saran Tambahan agar Proyek Anda "Bersih":
-Buat file requirements.txt:
-Di terminal (dengan venv aktif), jalankan:
 
-Bash
-pip freeze > requirements.txt
-Ini akan mencatat semua library yang Anda gunakan. File ini wajib di-push ke GitHub agar orang lain bisa menginstal library yang sama dengan Anda.
+⚠️ Catatan
+Pastikan semua file model .pkl ditempatkan di dalam folder /models agar API dapat memuat model dengan benar.
 
-Struktur Folder yang Disarankan:
-Agar rapi, pastikan susunannya seperti ini:
+Gunakan file .gitignore untuk mencegah folder venv dan model besar (jika menggunakan LFS) terunggah ke GitHub.
 
-Plaintext
-fastapi-ispa-prediction/
-├── models/
-│   ├── ensemble_model_ispa.pkl
-│   ├── le_jk.pkl
-│   ├── le_target.pkl
-│   └── preprocessor_ispa.pkl
-├── main.py
-├── requirements.txt
-├── .gitignore
-└── README.md
+
+---
+
+### Tips untuk Git:
+Setelah Anda menyimpan file di atas, pastikan Anda telah membuat file `requirements.txt` dengan cara:
+1. Pastikan `venv` aktif.
+2. Jalankan: `pip freeze > requirements.txt`
+
+Dengan adanya `README.md` dan `requirements.txt`, proyek Anda sudah siap untuk di-push ke GitHub dan orang lain akan sangat mudah menggunakannya. Apakah ada bagian lain yang ingin Anda tambahkan?
